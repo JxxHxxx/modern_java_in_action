@@ -10,6 +10,11 @@ import java.util.stream.Stream;
 
 public class Flatmap {
 
+    /**
+     * 채식주의자인 jxx, hxx, xuni 가 존재한다. 이들에게는 채식 음식(Dish)만 배급해야 한다.
+     * Order 객체와 Stream을 이용해서 이를 구현하라.
+     */
+
     @Test
     void predicate() {
         List<Dish> menus = List.of(new Dish("seasonal fruit", true, 120, Type.OTHER),
