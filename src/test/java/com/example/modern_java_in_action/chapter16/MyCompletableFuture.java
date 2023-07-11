@@ -30,6 +30,16 @@ public class MyCompletableFuture {
         System.out.println("안녕하세요"); // 비동기 작업을 수행하는 동안 다른 작업을 한다.
         System.out.println("jxx입니다");
 
+        // 아래 메서드가 실행되는 동안
+        anotherThread(future);
+        // 본 스레드는 블락됨 : 즉 아래 라인이 시작되기 위해서는 anotherThread(future) 가 결과를 반환해야함.
+
+        System.out.println("여기는 블록되겟죠?");
+        Thread.sleep(1000l);
+        executor.shutdown();
+    }
+
+    private static void anotherThread(Future<Long> future) {
         try {
             future.get(3, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
@@ -40,10 +50,6 @@ public class MyCompletableFuture {
             // Future가 완료되기 전에 타임아웃 발생
             System.out.println("작업이 완료되기 전에 타임아웃이 발생했습니다..");
         }
-
-        System.out.println("여기는 블록되겟죠?");
-        Thread.sleep(1000l);
-        executor.shutdown();
     }
 
     public Long factorial(int end) throws InterruptedException {
