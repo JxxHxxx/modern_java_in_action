@@ -15,7 +15,8 @@ public class Callback {
      */
     @Test
     void then_apply() throws ExecutionException, InterruptedException {
-        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> "Thread: " + Thread.currentThread().getName())
+        CompletableFuture<String> future = CompletableFuture
+                .supplyAsync(() -> "Thread: " + Thread.currentThread().getName())
                 .thenApply(data -> "Time : " + LocalTime.now() + " | " + data)
                 .thenApply(data -> "[ID : " + UUID.randomUUID() +" " + data + "]");
 
